@@ -37,7 +37,7 @@ app.patch('/notes/:idx', (req, res)=>{
     res.json({
         message: 'Note updated successfully'
     })
-})
+})  
 
 
 app.listen(3000, ()=>{
