@@ -9,34 +9,7 @@ body {
       width: 100%;
       background-color: black;
       color: white;
+    font-family: Arial, Helvetica, sans-serif;
+
 }
 
-.face-container {
-  position: relative;
-  width: 720px;
-  height: 560px;
-  margin: auto;
-  border: 2px solid #333;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  background: #000;
-}
-
-.face-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 720px;
-  height: 560px;
-  object-fit: cover;
-  z-index: 1;
-  border-radius: 12px;
-}
-
-.face-canvas-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-}
