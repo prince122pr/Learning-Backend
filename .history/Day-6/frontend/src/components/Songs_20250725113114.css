@@ -1,0 +1,16 @@
+.mood-songs{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 20rem;
+    /* align-items: center; */
+}
+
+.title{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+h2{
+    
+}

@@ -1,0 +1,12 @@
+.mood-songs{
+    display: flex;
+    flex-direction: column;
+    padding: auto;
+    /* align-items: center; */
+}
+
+.title{
+    display: flex;
+    justify-content: space-between;
+    /* gap: 80px; */
+}

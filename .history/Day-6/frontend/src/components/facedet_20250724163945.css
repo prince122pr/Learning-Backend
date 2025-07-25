@@ -1,0 +1,12 @@
+.face-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.video-div{
+    display: flex   ;
+}
+
+video{
+    width: 400px;
+}

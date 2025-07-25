@@ -1,0 +1,20 @@
+.mood-songs{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 20rem;
+    gap:20px
+}
+
+.each-item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.title{
+
+
+}
+
+h2{
+
+}

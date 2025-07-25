@@ -1,0 +1,41 @@
+.face-container{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 200px;
+}
+
+.video-div{
+    display: flex;
+    gap: 50px;
+}
+
+video{
+    width: 400px;
+    border-radius: 10%;
+}
+
+.detect-right-part{
+       display: flex;
+    flex-direction: column;
+
+}
+.detect-right-part h2{
+    font-size: 2rem;
+}
+
+.detect-right-part p{
+    font-size: 1.1rem;
+}
+
+button{
+    background-color: rgb(107, 34, 175);
+    padding: 15px 20px;
+    font-size: 1rem;
+    border-radius: 20px;
+    border: none;
+    width: 300px;
+    margin-top: 60px;
+}
