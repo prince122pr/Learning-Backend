@@ -13,3 +13,22 @@ body {
 
 }
 
+.parentApp{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 20%;
+}
+
+@media (max-width:1300px){
+  .parentApp{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 10%;
+}
+}

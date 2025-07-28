@@ -1,88 +1,135 @@
-
-
-
+/* Container Setup */
 .face-container {
+  margin-top: 40px;
   width: 100%;
-  /* padding: 60px 20px; */
-   padding: 1rem 20rem;
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
-}
-
-.video-div {
-  display: flex;
-  gap: 50px;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  max-width: 1200px;
-  width: 100%;
+  flex-wrap: wrap;
+  padding: 30px 20px;
+  background: #0d0d0d;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(107, 34, 175, 0.2);
 }
 
+/* Webcam Video */
 video {
   width: 100%;
-  max-width: 400px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
-   transform: scaleX(-1); /* Makes it like a mirror */
+  max-width: 420px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(107, 34, 175, 0.3);
+  transform: scaleX(-1);
+  transition: transform 0.4s ease;
 }
 
-
+/* Right Section */
 .detect-right-part {
   display: flex;
   flex-direction: column;
+  align-items: center;
   max-width: 400px;
   text-align: center;
-  gap: 20px;
+  gap: 15px;
+  color: #fff;
 }
 
+/* Headings and Text */
 .detect-right-part h2 {
-  font-size: 2rem;
-  color: #6b22af;
-  margin-bottom: 10px;
+  font-size: 2.2rem;
+  color: #9c4eff;
+  font-weight: 700;
 }
 
 .detect-right-part p {
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.7;
+  color: #ccc;
 }
 
+/* Button Styling */
 button {
-  background-color: #6b22af;
-  padding: 15px 25px;
-  font-size: 1rem;
-  border-radius: 30px;
-  border: none;
-  width: 100%;
-  max-width: 300px;
-  margin: 30px auto 0;
+  background: linear-gradient(to right, #7b2ff7, #f107a3);
   color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 30px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 280px;
   transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #561a96;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(107, 34, 175, 0.3);
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(241, 7, 163, 0.3);
 }
 
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
-/* Responsive */
-@media screen and (max-width: 768px) {
-  .video-div {
+/* Loading Popup */
+.loading-popup {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, #7b2ff7, #f107a3);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 1024px) {
+  .face-container {
     flex-direction: column;
     gap: 30px;
-    text-align: center;
+  }
+
+  video {
+    max-width: 100%;
   }
 
   .detect-right-part h2 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
   }
 
   .detect-right-part p {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .face-container {
+    padding: 20px 10px;
+  }
+
+  .detect-right-part {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .detect-right-part h2 {
+    font-size: 1.5rem;
+  }
+
+  .detect-right-part p {
+    font-size: 0.95rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 12px 20px;
   }
 }

@@ -1,9 +1,13 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import * as faceapi from "face-api.js";
 import './facedet.css'
+import axios from 'axios'
 
-const FaceDetection = () => {
+const FaceDetection = ({ setSongs }) => {
   const videoRef = useRef(null);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingDots, setLoadingDots] = useState('');
 
   const startVideo = () => {
     navigator.mediaDevices
@@ -24,48 +28,87 @@ const FaceDetection = () => {
     startVideo();
   };
 
-  const detectMood = async () => {
-    if (!videoRef.current || videoRef.current.readyState !== 4) return;
+  const detectMood = () => {
+  if (!videoRef.current || videoRef.current.readyState !== 4) return;
 
-    const detections = await faceapi
-      .detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions())
-      .withFaceLandmarks()
-      .withFaceExpressions();
+  setIsLoading(true); // Show loading immediately
 
-    if (!detections || detections.length === 0) {
-      console.log("No face detected");
-      return;
+  // Allow React to update UI before blocking code starts
+  setTimeout(async () => {
+    try {
+      const detections = await faceapi
+        .detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions())
+        .withFaceLandmarks()
+        .withFaceExpressions();
+
+      if (!detections || detections.length === 0) {
+        console.log("No face detected");
+        return;
+      }
+
+      const expressions = detections[0].expressions;
+      const topExpression = Object.entries(expressions).sort(
+        (a, b) => b[1] - a[1]
+      )[0][0];
+
+      console.log("Expression:", topExpression);
+
+      const res = await axios.get(`http://localhost:3000/songs?mood=${topExpression}`);
+      console.log(res.data);
+      setSongs(res.data.songs);
+
+    } catch (err) {
+      console.error("Error detecting mood or fetching songs:", err);
+    } finally {
+      setIsLoading(false); // Hide loading message
+      console.log('Process finished');
     }
+  }, 100); // Allow React to render "Processing..." first
+};
 
-    const expressions = detections[0].expressions;
-    const topExpression = Object.entries(expressions).sort(
-      (a, b) => b[1] - a[1]
-    )[0][0];
-
-    console.log("Expression:", topExpression);
-  };
 
   useEffect(() => {
     loadModels();
   }, []);
 
+  // Animate "Processing..." dots
+  useEffect(() => {
+    let interval;
+    if (isLoading) {
+      interval = setInterval(() => {
+        setLoadingDots(prev => {
+          if (prev === '...') return '';
+          else return prev + '.';
+        });
+      }, 500);
+    } else {
+      setLoadingDots('');
+    }
+    return () => clearInterval(interval);
+  }, [isLoading]);
+
   return (
     <div className="face-container">
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        playsInline
+        className="face-video rounded-xl"
+      />
+      <div className="detect-right-part">
+        <h2>Live Mood Detection</h2>
+        <p>Your current mood is being analyzed in real-time. Enjoy music tailored to <br /> your feelings.</p>
 
-      <div className="video-div">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          playsInline
-          className="face-video w-full max-w-lg mx-auto rounded-xl"
-        />
-        <div className="detect-right-part">
-          <h2>Live Mood Detection</h2>
-          <p>Your current mood is being analyzed in real-time. Enjoy music tailored to <br /> your feelings.</p>
-        <button onClick={detectMood}>Start Listening</button>
+        {isLoading && (
+          <div className="loading-popup">
+            Processing{loadingDots}
+          </div>
+        )}
 
-        </div>
+        <button onClick={detectMood} disabled={isLoading}>
+          {isLoading ? `Processing${loadingDots}` : 'Click Me'}
+        </button>
       </div>
     </div>
   );
