@@ -45,13 +45,36 @@ This ensures the token is secure and untampered.
 
 ---
 
-## 🔓 Authentication vs Authorization
+## ✅ Authentication vs Authorization
+- **Authentication** → Who you are (e.g., verifying your identity using username/password).
+- **Authorization** → What you can access (e.g., roles/permissions after login).
 
-### ✅ Authentication:
-Confirms identity of the user (e.g., login required? who is this user?)
+---
 
-### ✅ Authorization:
-Determines what the authenticated user is allowed to do (e.g., admin access? allowed to delete?)
+## 🧠 Middleware (User-Defined)
+Custom middleware in Express is a **function** that runs between a request and a response.  
+Example: JWT verification, logging, error handling.
+
+---
+
+## 📦 Cookie in HTTP
+A **cookie** is a small piece of data stored in the client (browser) and **sent with every HTTP request** to the server.
+
+---
+
+## 🍪 How to Use Cookies with JWT
+1. Install cookie parser:
+   ```bash
+   npm install cookie-parser
+---
+
+## 📦 What is `cookie-parser`?
+`cookie-parser` is a middleware for Express.js used to **parse cookies** from the HTTP request and make them easily accessible through `req.cookies`.
+
+## ✅ Why Use It?
+- To **read cookies** sent by the client (browser).
+- To **extract token/session** stored in cookies.
+- Helpful in authentication with **JWT stored in cookies**.
 
 ---
 

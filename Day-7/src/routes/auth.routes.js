@@ -6,7 +6,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-
 const authRouter = express.Router();
 
 authRouter.post("/register", async (req, res) => {
@@ -58,10 +57,44 @@ authRouter.post("/login", async (req, res) => {
 
   }, process.env.JWT_SECRET)
 
+  res.cookie("token", token);
+
   res.status(201).json({
     message: "Welcome Back!",
-    token, // ✅ Don't forget to send the token to the client
   });
 });
+
+
+authRouter.get("/user", async(req, res)=>{
+
+    let {token} = req.cookies;
+
+    // when no token there
+    if(!token){
+        return res.status(401).json({
+            message: "Unauthorized"
+        })
+    }
+
+    // if we get token, then need to verify token
+    try {
+        let decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        const user = await userModel.findOne({
+            _id: decoded.id
+        })
+
+        res.status(200).json({
+            message: 'User data fetched successfully!',
+            user
+        })
+
+    } catch (error) {
+        return res.status(401).json({
+            message: "Unauthorized | Invalid Token"
+        })
+    }
+
+})
 
 export default authRouter;
