@@ -54,8 +54,9 @@ authRouter.post("/login", async (req, res) => {
 //   token part
   let token = jwt.sign({
     id:user._id,
-
-  }, process.env.JWT_SECRET)
+    
+  }, process.env.JWT_SECRET,   { expiresIn: "7d" }//optional but recommended 
+  )
 
   res.cookie("token", token);
 
@@ -95,6 +96,14 @@ authRouter.get("/user", async(req, res)=>{
         })
     }
 
+})
+
+
+authRouter.get('/logout', (req, res)=>{
+  res.clearCookie('token');
+  res.status(200).json({
+    message: "User logged out successfully!"
+  })
 })
 
 export default authRouter;
