@@ -1,8 +1,6 @@
-// A controller is a function (or a group of functions) that handles the logic for processing incoming HTTP requests, interacting with the database or other services, and sending the appropriate response back to the client.
-//A controller is basically just a function that contains the logic for what a route should do.
-
 const userModel = require('../models/user.model');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs')
 
 async function registerController (req, res){
 
@@ -17,9 +15,15 @@ async function registerController (req, res){
         message: "Username is already taken!"
     })
 
-    await userModel.create({
-        username, password
-    })
+        await userModel.create({
+            username, 
+            password: await bcrypt.hash(password, 10)
+//Let's say if user enter: hello123
+// Bcrypt converts that to something like:
+// "$2b$10$n9wFQTxA0ue9Y8D2RcF1Ge..."
+// (a long, unique, hashed string)
+// Now this hashed version is saved in the database.
+        })
 
     res.status(201).json({
         message: "User Registered Successfully!"
@@ -41,7 +45,13 @@ async function loginController (req, res){
         })
     }
 
-    let isValidPassword = password === user.password;
+    // let isValidPassword = password === user.password;
+    
+    let isValidPassword = await bcrypt.compare(password, user.password)
+// Let's say user again type hello123
+// Bcrypt internally:
+// Hashes your enteredPassword
+// Checks if it matches the hash stored in DB
 
     if(!isValidPassword) res.status(401).json({
         message: "Invalid Password!"
