@@ -46,7 +46,7 @@ async function loginController (req, res){
     }
 
     // let isValidPassword = password === user.password;
-    
+
     let isValidPassword = await bcrypt.compare(password, user.password)
 // Let's say user again type hello123
 // Bcrypt internally:
@@ -70,31 +70,4 @@ async function loginController (req, res){
 }
 
 
-async function getUserController(req, res){
-    let {token} = req.cookies;
-
-    if(!token) return res.status(401).json({
-        message: 'Unauthorized!'
-    })
-    
-    try {
-        let decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-        
-        let user = await userModel.findOne({
-            _id: decoded.id
-        })
-
-        res.status(200).json({
-            message: 'User Fetched Successfully!',
-            user
-        })
-
-    } catch (error) {
-        return res.status(401).json({
-            message: "Unauthorized | Invalid Token"
-        })
-    }
-
-}
-
-module.exports = {registerController, loginController, getUserController}
+module.exports = {registerController, loginController}
