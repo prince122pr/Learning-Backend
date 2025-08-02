@@ -1,0 +1,15 @@
+📸 Hinglish Image Caption Generator using Gemini AI (Node.js + Google GenAI):
+
+A fun and creative AI-powered tool that generates catchy Hinglish captions for images using Google’s Gemini 2.5 Flash model. Users can upload an image, and the system analyzes it deeply to produce a funny, relatable, and emoji-rich caption in 3–4 lines.
+
+🔍 Uses Gemini’s multimodal capabilities to understand the content of an image
+
+🧠 Custom system prompt designed to generate captions in Hinglish (Hindi + English) with a humorous tone
+
+📤 Accepts image uploads via frontend or API, converts to Base64, and processes via Google GenAI SDK
+
+🎨 Captions include emojis, hashtags, and social-media-ready language for engagement
+
+🛠️ Built with Node.js, express, multer, and Google’s @google/genai package
+
+This project demonstrates the power of combining multimodal AI with cultural flavor (Hinglish) for personalized, social-media-friendly outputs.
