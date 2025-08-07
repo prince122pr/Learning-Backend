@@ -83,9 +83,22 @@ To enable **real-time communication** where updates must be fast and server shou
 
 ---
 
+# 
+
+## 🔄 `io` vs `socket` in Socket.IO | What’s the Difference?
+
+| Term     | Represents                       | Description                        |
+|----------|----------------------------------|-------------------------------------|
+| `io`     | WebSocket **Server**             | Manages all socket connections      |
+| `socket` | A **Single Client Connection**   | Represents one connected user       |
+
+---
+
 ## ✅ Summary
 
 - **WebSocket** = Real-time, 2-way communication over 1 persistent connection.
 - **Socket.IO** = Library to simplify WebSocket use in JavaScript/Node.js.
 - Use when real-time, instant updates are needed.
+
+
 
