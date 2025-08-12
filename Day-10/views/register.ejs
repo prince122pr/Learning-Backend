@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Chatgpt-AI</title>
+    <link rel="stylesheet" href="/styles/auth-form.css">
+</head>
+
+<body>
+    <div class="theme-toggle">
+        <button id="toggleTheme" aria-label="Toggle theme">🌙</button>
+    </div>
+    <div class="register-container">
+        <h1>Register</h1>
+        <form class="register-form" method="POST" action="/auth/register">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required autocomplete="email"
+                    placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required autocomplete="username"
+                    placeholder="Choose a username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required autocomplete="new-password"
+                    placeholder="Create a password">
+            </div>
+            <button type="submit" class="btn-register">Sign Up</button>
+            <div class="form-links">
+                <a href="/auth/login" class="register-link">Already have an account?</a>
+            </div>
+        </form>
+    </div>
+    <script>
+        const btn = document.getElementById('toggleTheme');
+        btn.onclick = function () {
+            document.body.classList.toggle('light-theme');
+            btn.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+        };
+    </script>
+</body>
+
+</html>

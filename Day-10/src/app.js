@@ -1,5 +1,7 @@
 const express = require('express');
 const indexRouter = require('./routes/index.routes');
+const authRouter = require('./routes/auth.routes')
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -12,6 +14,9 @@ app.use(express.urlencoded({extended:true})) //an Express middleware that lets o
 
 app.use(express.static("public"))
 
+app.use(cookieParser()); 
+
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
 
 module.exports = app;
