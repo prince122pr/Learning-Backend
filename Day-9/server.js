@@ -7,6 +7,7 @@ require('dotenv').config();
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 const generateResponse = require("./src/services/ai.service");
+const { log } = require("console");
 
 // We're using http.createServer(app) because Socket.IO needs a raw HTTP server to work.
 // Express app alone can't handle WebSocket connections — it's just a function for routing.
@@ -15,6 +16,8 @@ const generateResponse = require("./src/services/ai.service");
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, { });
+
+let chatHistory = []
 
 
 io.on("connection", (socket) => {
@@ -30,18 +33,31 @@ io.on("connection", (socket) => {
      console.log('Message received');
      
    })
+
     socket.on('test-event', (data)=>{
      console.log(data);
      
    })
 
    socket.on('ai-message', async(data)=>{
-    console.log(`Received Message: ${data.prompt}`);
     
-    const response = await generateResponse(data.prompt);
-    // console.log(`AI Response: ${response}`);
+     
+     chatHistory.push({
+       role: "user",
+       parts: [{ text: data }],
+      },)
+      console.log(`Received Message: ${data}`);  
+      
+    const response = await generateResponse(chatHistory);
 
-    socket.emit("ai-message-response", {response});
+    chatHistory.push( {
+        role: "model",
+        parts: [{ text: response }],
+      },)
+    
+    console.log(response);
+    
+    socket.emit("ai-message-response", response);
       
    })
 
