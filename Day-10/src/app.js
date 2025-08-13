@@ -1,7 +1,7 @@
 const express = require('express');
-const indexRouter = require('./routes/index.routes');
 const authRouter = require('./routes/auth.routes')
 const cookieParser = require('cookie-parser');
+const homeRouter = require('./routes/home.routes');
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(express.static("public"))
 
 app.use(cookieParser()); 
 
-app.use('/', indexRouter);
+app.use('/', homeRouter);
 app.use('/auth', authRouter);
 
 module.exports = app;

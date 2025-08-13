@@ -65,9 +65,10 @@ const postLoginController = async(req, res) => {
 
     res.cookie("token", token);
 
-    res.status(200).json({
-        message: "Logged in successfully",
-        user})
+    // res.status(200).json({
+    //     message: "Logged in successfully",
+    //     user})
+    res.redirect('/')
 
 }
 

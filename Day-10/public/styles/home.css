@@ -1,0 +1,327 @@
+/* Mobile-first approach */
+:root {
+  --sidebar-bg: #18181a;
+  --main-bg: #222326;
+  --header-bg: #23272f;
+  --accent: #00ffe7;
+  --text: #e3e3e3;
+  --highlight: #2d2f36;
+  --input-bg: #23272f;
+  --input-border: #333;
+  --input-radius: 1.2rem;
+  --user-avatar-bg: #0077ff;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Base styles for mobile */
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--main-bg);
+  color: var(--text);
+  font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+
+  /* min-height: 100vh; */
+}
+
+.sidebar {
+  display: none;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--main-bg);
+  padding: 1rem;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--header-bg);
+  padding: 1rem;
+  border-bottom: 1px solid #222;
+}
+
+.main-header h1 {
+  margin: 0;
+  color: var(--accent);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.chat-section {
+  flex: 1;
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  overflow-y: auto; 
+    max-height: 90vh; /* Limit height for mobile */
+
+}
+
+/* For desktop/tablet, increase the max-height */
+@media (min-width: 900px) {
+
+  .main-content {
+    padding: 1.5rem;
+  }
+  .chat-section {
+    padding: 2.5rem 0 1rem 0;
+    max-height: 70vh; 
+  }
+}
+
+.chat-message {
+  background: var(--highlight);
+  border-radius: 1.2rem;
+  padding: 0rem 1rem;
+  /* margin-bottom: 1rem; */
+  max-width: 100%;
+  box-shadow: 0 2px 8px 0 rgba(0, 255, 231, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.chat-message.user {
+  align-self: flex-start;
+  color: #222;
+}
+
+.chat-message.bot {
+  align-self: flex-end;
+  background: var(--highlight);
+  color: var(--text);
+}
+
+
+.message-highlight {
+  background: var(--accent);
+  color: #222;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.7rem;
+  font-weight: 500;
+}
+
+.emoji {
+  font-size: 1.2rem;
+}
+
+.message-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.message-actions button {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.5rem;
+}
+
+.message-actions button:hover {
+  background: var(--accent);
+  color: #222;
+}
+
+.chat-input-form {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  /* background: var(--header-bg); */
+  border-top: 1px solid #222;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border-radius: var(--input-radius);
+  border: 1.5px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text);
+  font-size: 1rem;
+  outline: none;
+  margin-right: 0.7rem;
+  transition: border-color 0.2s;
+}
+
+.chat-input:focus {
+  border-color: var(--accent);
+}
+
+.send-btn {
+  background: var(--accent);
+  color: #222;
+  border: none;
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.send-btn:hover {
+  background: #00bfae;
+  color: #fff;
+}
+
+.theme-toggle button {
+  background: var(--input-bg);
+  color: var(--accent);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px 0 rgba(0, 255, 231, 0.12);
+  transition: background 0.2s, color 0.2s;
+}
+
+.theme-toggle button:hover {
+  background: var(--accent);
+  color: var(--primary-bg);
+}
+
+/* Light theme */
+body.light-theme {
+  --sidebar-bg: #f7f7faef;
+  --main-bg: #ffffffe7;
+  --header-bg: #e9eef6e4;
+  --accent: #0077ff;
+  --text: #23272f;
+  --highlight: #e3eafd;
+  --input-bg: #f7f7fa;
+  --input-border: #bbb;
+  --user-avatar-bg: #0077ff;
+}
+
+.message-content {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+/* Tablet and up: show sidebar, adjust paddings */
+@media (min-width: 900px) {
+  body {
+    flex-direction: row;
+  }
+  .sidebar {
+    display: flex;
+    width: 260px;
+    background: var(--sidebar-bg);
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem 1rem;
+  }
+
+  .main-header,
+  .chat-input-form {
+    padding: 1.2rem 2rem;
+  }
+  .main-content {
+    min-width: 0;
+padding: 1rem;
+  }
+  .chat-section {
+    /* padding: 2.5rem 0 1rem 0; */
+    max-height: 70vh;
+  }
+  .chat-message {
+    max-width: 500px;
+    /* margin-bottom: 1.5rem; */
+    /* padding: 1.2rem 1.5rem; */
+  }
+
+  .chat-message.user {
+    align-self: flex-end;
+    color: #222;
+  }
+
+  .chat-message.bot {
+    align-self: flex-start;
+    background: var(--highlight);
+    color: var(--text);
+  }
+
+  .replyPara {
+    font-size: 0.5rem;
+  }
+}
+
+/* Sidebar details for desktop */
+@media (min-width: 900px) {
+  .sidebar-header h2 {
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+  }
+  .sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .sidebar-nav li {
+    margin-bottom: 1.2rem;
+  }
+  .sidebar-nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1.08rem;
+    transition: color 0.2s;
+  }
+  .sidebar-nav a:hover {
+    color: var(--accent);
+  }
+  .sidebar-footer {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+  }
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .user-avatar {
+    background: var(--user-avatar-bg);
+    color: #fff;
+    border-radius: 50%;
+    width: 2.2rem;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  .user-name {
+    font-size: 1rem;
+    color: var(--text);
+  }
+}

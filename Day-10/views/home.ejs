@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Chatgpt-AI</title>
+    <link rel="stylesheet" href="/styles/home.css">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>ChatGPT</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#">New chat</a></li>
+                <li><a href="#">Search chats</a></li>
+                <li><a href="#">Library</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <span class="user-avatar">P</span>
+                <span class="user-name">Prince Kumar</span>
+            </div>
+        </div>
+    </aside>
+    <main class="main-content">
+        <header class="main-header">
+            <h1>ChatGPT</h1>
+            <div class="theme-toggle">
+                <button id="toggleTheme" aria-label="Toggle theme">🌙</button>
+            </div>
+        </header>
+        <section class="chat-section" id="chatSection">
+            <!-- Messages will be appended here -->
+        </section>
+        <form class="chat-input-form" id="chatForm" autocomplete="off">
+            <input type="text" placeholder="Ask anything" class="chat-input" id="chatInput" />
+            <button type="submit" class="send-btn">+</button>
+        </form>
+
+    </main>
+
+    
+    <script src="/scripts/theme-toggle.js"></script>
+    <script src="/scripts/chat.js"></script>
+</body>
+
+</html>
+
