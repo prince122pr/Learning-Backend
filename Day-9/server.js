@@ -40,8 +40,7 @@ io.on("connection", (socket) => {
    })
 
    socket.on('ai-message', async(data)=>{
-    
-     
+
      chatHistory.push({
        role: "user",
        parts: [{ text: data }],

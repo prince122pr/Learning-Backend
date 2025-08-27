@@ -53,7 +53,7 @@ async function loginController (req, res){
 // Hashes your enteredPassword
 // Checks if it matches the hash stored in DB
 
-    if(!isValidPassword) res.status(401).json({
+    if(!isValidPassword) return res.status(401).json({
         message: "Invalid Password!"
     })
 

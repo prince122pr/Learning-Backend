@@ -33,7 +33,7 @@ const postRegisterController = async(req, res) => {
     //     message: "User registered successfully!",
     // })
 
-    return res.render("login",{ message: "User registered successfully! Please login." })  // Redirect to login page after registration
+       return res.redirect('/auth/login');
 
 }
 
@@ -72,4 +72,10 @@ const postLoginController = async(req, res) => {
 
 }
 
-module.exports = {getRegisterController, postRegisterController, getLoginController, postLoginController}
+
+const userLogout = async(req, res) => {
+   res.clearCookie('token');
+   return res.redirect('/auth/login')
+}
+
+module.exports = {getRegisterController, postRegisterController, getLoginController, postLoginController, userLogout}
